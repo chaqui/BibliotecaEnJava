@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBibliotecariaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBibliotecariaEmpty}" rendered="#{bibliotecariaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{bibliotecariaController.items.rowCount > 0}">
+                    <h:outputText value="#{bibliotecariaController.pagination.pageFirstItem + 1}..#{bibliotecariaController.pagination.pageLastItem + 1}/#{bibliotecariaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{bibliotecariaController.previous}" value="#{bundle.Previous} #{bibliotecariaController.pagination.pageSize}" rendered="#{bibliotecariaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{bibliotecariaController.next}" value="#{bundle.Next} #{bibliotecariaController.pagination.pageSize}" rendered="#{bibliotecariaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{bibliotecariaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBibliotecariaTitle_nickname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nickname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBibliotecariaTitle_contraseña}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contraseña}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBibliotecariaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBibliotecariaTitle_apellido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellido}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBibliotecariaTitle_dni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dni}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{bibliotecariaController.prepareView}" value="#{bundle.ListBibliotecariaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bibliotecariaController.prepareEdit}" value="#{bundle.ListBibliotecariaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bibliotecariaController.destroy}" value="#{bundle.ListBibliotecariaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{bibliotecariaController.prepareCreate}" value="#{bundle.ListBibliotecariaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBibliotecariaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPeliculaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_idpelicula}"/>
+                    <h:outputText value="#{peliculaController.selected.idpelicula}" title="#{bundle.ViewPeliculaTitle_idpelicula}"/>
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_articuloidArticulo}"/>
+                    <h:outputText value="#{peliculaController.selected.articuloidArticulo}" title="#{bundle.ViewPeliculaTitle_articuloidArticulo}"/>
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_duracion}"/>
+                    <h:outputText value="#{peliculaController.selected.duracion}" title="#{bundle.ViewPeliculaTitle_duracion}"/>
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_año}"/>
+                    <h:outputText value="#{peliculaController.selected.año}" title="#{bundle.ViewPeliculaTitle_año}"/>
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_pais}"/>
+                    <h:outputText value="#{peliculaController.selected.pais}" title="#{bundle.ViewPeliculaTitle_pais}"/>
+                    <h:outputText value="#{bundle.ViewPeliculaLabel_productora}"/>
+                    <h:outputText value="#{peliculaController.selected.productora}" title="#{bundle.ViewPeliculaTitle_productora}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{peliculaController.destroyAndView}" value="#{bundle.ViewPeliculaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPeliculaEditLink}"/>
+                <br />
+                <h:commandLink action="#{peliculaController.prepareCreate}" value="#{bundle.ViewPeliculaCreateLink}" />
+                <br />
+                <h:commandLink action="#{peliculaController.prepareList}" value="#{bundle.ViewPeliculaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPeliculaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTelefonoBibliotecariaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTelefonoBibliotecariaEmpty}" rendered="#{telefonoBibliotecariaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{telefonoBibliotecariaController.items.rowCount > 0}">
+                    <h:outputText value="#{telefonoBibliotecariaController.pagination.pageFirstItem + 1}..#{telefonoBibliotecariaController.pagination.pageLastItem + 1}/#{telefonoBibliotecariaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{telefonoBibliotecariaController.previous}" value="#{bundle.Previous} #{telefonoBibliotecariaController.pagination.pageSize}" rendered="#{telefonoBibliotecariaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{telefonoBibliotecariaController.next}" value="#{bundle.Next} #{telefonoBibliotecariaController.pagination.pageSize}" rendered="#{telefonoBibliotecariaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{telefonoBibliotecariaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTelefonoBibliotecariaTitle_idTelefonoBibliotecaria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTelefonoBibliotecaria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTelefonoBibliotecariaTitle_bibliotecarianickname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bibliotecarianickname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTelefonoBibliotecariaTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{telefonoBibliotecariaController.prepareView}" value="#{bundle.ListTelefonoBibliotecariaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{telefonoBibliotecariaController.prepareEdit}" value="#{bundle.ListTelefonoBibliotecariaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{telefonoBibliotecariaController.destroy}" value="#{bundle.ListTelefonoBibliotecariaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{telefonoBibliotecariaController.prepareCreate}" value="#{bundle.ListTelefonoBibliotecariaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTelefonoBibliotecariaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCdMusicaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_idcdMusica}" for="idcdMusica" />
+                    <h:inputText id="idcdMusica" value="#{cdMusicaController.selected.idcdMusica}" title="#{bundle.EditCdMusicaTitle_idcdMusica}" required="true" requiredMessage="#{bundle.EditCdMusicaRequiredMessage_idcdMusica}"/>
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_articuloidArticulo}" for="articuloidArticulo" />
+                    <h:inputText id="articuloidArticulo" value="#{cdMusicaController.selected.articuloidArticulo}" title="#{bundle.EditCdMusicaTitle_articuloidArticulo}" required="true" requiredMessage="#{bundle.EditCdMusicaRequiredMessage_articuloidArticulo}"/>
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_genero}" for="genero" />
+                    <h:inputText id="genero" value="#{cdMusicaController.selected.genero}" title="#{bundle.EditCdMusicaTitle_genero}" />
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_pais}" for="pais" />
+                    <h:inputText id="pais" value="#{cdMusicaController.selected.pais}" title="#{bundle.EditCdMusicaTitle_pais}" />
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_año}" for="año" />
+                    <h:inputText id="año" value="#{cdMusicaController.selected.año}" title="#{bundle.EditCdMusicaTitle_año}" />
+                    <h:outputLabel value="#{bundle.EditCdMusicaLabel_noPistas}" for="noPistas" />
+                    <h:inputText id="noPistas" value="#{cdMusicaController.selected.noPistas}" title="#{bundle.EditCdMusicaTitle_noPistas}" />
+                </h:panelGrid>
+                <h:commandLink action="#{cdMusicaController.update}" value="#{bundle.EditCdMusicaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCdMusicaViewLink}"/>
+                <br />
+                <h:commandLink action="#{cdMusicaController.prepareList}" value="#{bundle.EditCdMusicaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCdMusicaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

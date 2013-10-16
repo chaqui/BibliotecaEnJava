@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePeliculaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_idpelicula}" for="idpelicula" />
+                    <h:inputText id="idpelicula" value="#{peliculaController.selected.idpelicula}" title="#{bundle.CreatePeliculaTitle_idpelicula}" required="true" requiredMessage="#{bundle.CreatePeliculaRequiredMessage_idpelicula}"/>
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_articuloidArticulo}" for="articuloidArticulo" />
+                    <h:inputText id="articuloidArticulo" value="#{peliculaController.selected.articuloidArticulo}" title="#{bundle.CreatePeliculaTitle_articuloidArticulo}" required="true" requiredMessage="#{bundle.CreatePeliculaRequiredMessage_articuloidArticulo}"/>
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_duracion}" for="duracion" />
+                    <h:inputText id="duracion" value="#{peliculaController.selected.duracion}" title="#{bundle.CreatePeliculaTitle_duracion}" />
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_año}" for="año" />
+                    <h:inputText id="año" value="#{peliculaController.selected.año}" title="#{bundle.CreatePeliculaTitle_año}" />
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_pais}" for="pais" />
+                    <h:inputText id="pais" value="#{peliculaController.selected.pais}" title="#{bundle.CreatePeliculaTitle_pais}" />
+                    <h:outputLabel value="#{bundle.CreatePeliculaLabel_productora}" for="productora" />
+                    <h:inputText id="productora" value="#{peliculaController.selected.productora}" title="#{bundle.CreatePeliculaTitle_productora}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{peliculaController.create}" value="#{bundle.CreatePeliculaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{peliculaController.prepareList}" value="#{bundle.CreatePeliculaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePeliculaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

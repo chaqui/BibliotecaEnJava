@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCdMusicaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCdMusicaEmpty}" rendered="#{cdMusicaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cdMusicaController.items.rowCount > 0}">
+                    <h:outputText value="#{cdMusicaController.pagination.pageFirstItem + 1}..#{cdMusicaController.pagination.pageLastItem + 1}/#{cdMusicaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cdMusicaController.previous}" value="#{bundle.Previous} #{cdMusicaController.pagination.pageSize}" rendered="#{cdMusicaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cdMusicaController.next}" value="#{bundle.Next} #{cdMusicaController.pagination.pageSize}" rendered="#{cdMusicaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cdMusicaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_idcdMusica}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcdMusica}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_articuloidArticulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.articuloidArticulo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_genero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.genero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_pais}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pais}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_año}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.año}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCdMusicaTitle_noPistas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noPistas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cdMusicaController.prepareView}" value="#{bundle.ListCdMusicaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cdMusicaController.prepareEdit}" value="#{bundle.ListCdMusicaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cdMusicaController.destroy}" value="#{bundle.ListCdMusicaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cdMusicaController.prepareCreate}" value="#{bundle.ListCdMusicaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCdMusicaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

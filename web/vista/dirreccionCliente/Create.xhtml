@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDirreccionClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDirreccionClienteLabel_idDirreccionCliente}" for="idDirreccionCliente" />
+                    <h:inputText id="idDirreccionCliente" value="#{dirreccionClienteController.selected.idDirreccionCliente}" title="#{bundle.CreateDirreccionClienteTitle_idDirreccionCliente}" required="true" requiredMessage="#{bundle.CreateDirreccionClienteRequiredMessage_idDirreccionCliente}"/>
+                    <h:outputLabel value="#{bundle.CreateDirreccionClienteLabel_clienteNickName}" for="clienteNickName" />
+                    <h:inputText id="clienteNickName" value="#{dirreccionClienteController.selected.clienteNickName}" title="#{bundle.CreateDirreccionClienteTitle_clienteNickName}" required="true" requiredMessage="#{bundle.CreateDirreccionClienteRequiredMessage_clienteNickName}"/>
+                    <h:outputLabel value="#{bundle.CreateDirreccionClienteLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{dirreccionClienteController.selected.direccion}" title="#{bundle.CreateDirreccionClienteTitle_direccion}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dirreccionClienteController.create}" value="#{bundle.CreateDirreccionClienteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{dirreccionClienteController.prepareList}" value="#{bundle.CreateDirreccionClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDirreccionClienteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
